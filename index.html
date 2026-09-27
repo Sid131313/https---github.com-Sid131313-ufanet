@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Быстрый домашний интернет Уфанет до 1 Гбит/с. Проверьте подключение по вашему адресу.">
+  <meta name="theme-color" content="#231429">
+  <title>Уфанет — интернет, который летит к вам</title>
+  <link rel="icon" href="./public/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="icon-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+      <symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18"/></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+      <symbol id="icon-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="icon-router" viewBox="0 0 24 24"><rect x="3" y="10" width="18" height="9" rx="2"/><path d="M8.5 15h.01M12 15h.01M15 10V6M12 7.5a4.5 4.5 0 0 1 6 0"/></symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.4 8.2-8 9-4.6-.8-8-4-8-9V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></symbol>
+      <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.3 3.7L17 8l-3.7 1.3L12 13l-1.3-3.7L7 8l3.7-1.3L12 3ZM5 14l.9 2.1L8 17l-2.1.9L5 20l-.9-2.1L2 17l2.1-.9L5 14ZM19 13l.7 1.3 1.3.7-1.3.7L19 17l-.7-1.3L17 15l1.3-.7L19 13Z"/></symbol>
+      <symbol id="icon-wifi" viewBox="0 0 24 24"><path d="M4.9 9.1a10 10 0 0 1 14.2 0M7.8 12a6 6 0 0 1 8.4 0M10.6 14.9a2 2 0 0 1 2.8 0"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="icon-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></symbol>
+    </defs>
+  </svg>
+
+  <main>
+    <header class="site-header">
+      <a href="#top" class="logo-link" aria-label="Уфанет — на главную">
+        <img src="./public/logo.svg" alt="Уфанет">
+      </a>
+      <nav class="desktop-nav" aria-label="Основная навигация">
+        <a href="#tariffs">Тарифы в квартиру</a>
+        <a href="#tariffs">Тарифы в частный дом</a>
+        <a href="#benefits">Услуги</a>
+        <a href="#benefits" class="business-link">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#icon-briefcase"/></svg>
+          Для бизнеса
+        </a>
+      </nav>
+      <div class="header-actions">
+        <button class="city-button" type="button">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-map-pin"/></svg>
+          Уфа
+        </button>
+        <button class="header-cta" type="button" data-scroll-to="#coverage">Подключиться</button>
+        <button class="menu-button" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="menu-icon" aria-hidden="true"><span></span></span>
+        </button>
+      </div>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Мобильная навигация" aria-hidden="true">
+        <a href="#tariffs">Тарифы в квартиру</a>
+        <a href="#tariffs">Тарифы в частный дом</a>
+        <a href="#benefits">Услуги</a>
+        <a href="#benefits" class="business-link">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><use href="#icon-briefcase"/></svg>
+          Для бизнеса
+        </a>
+      </nav>
+    </header>
+
+    <div id="top"></div>
+    <section class="story" aria-label="Путь сигнала Уфанет">
+      <div class="story-sticky">
+        <canvas class="story-canvas" aria-hidden="true"></canvas>
+        <div class="story-shade"></div>
+        <div class="story-copy story-copy-main is-active" data-story-phase="0">
+          <span class="eyebrow eyebrow-light">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-sparkles"/></svg>
+            Связь нового поколения
+          </span>
+          <h1>Интернет,<br><em>который летит</em><br>прямо к вам</h1>
+          <p>До 1 Гбит/с для работы, фильмов, игр — и всего, что вы любите.</p>
+          <div class="hero-actions">
+            <button class="brand-button" type="button" data-scroll-to="#coverage">
+              Проверить адрес
+              <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-arrow-right"/></svg>
+            </button>
+            <span class="hero-note"><span>от</span><strong>590 ₽</strong><span>/ месяц</span></span>
+          </div>
+        </div>
+        <div class="story-copy story-copy-mid" data-story-phase="1">
+          <span class="story-index">01 — 02</span>
+          <h2>С улицы —<br>в ваше окно.</h2>
+          <p>Оптоволокно ведет сигнал до самого дома без потерь скорости.</p>
+        </div>
+        <div class="story-copy story-copy-end" data-story-phase="2">
+          <span class="story-index">02 — 02</span>
+          <h2>И дальше —<br><em>к вам.</em></h2>
+          <p>Стабильный Wi‑Fi во всей квартире. Быстро, тихо, незаметно.</p>
+        </div>
+        <div class="story-progress" aria-hidden="true"><span>Дом</span><i><b></b></i><span>Вы</span></div>
+        <div class="scroll-cue" aria-hidden="true">
+          <svg fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-arrow-down"/></svg>
+          <span>Листайте, чтобы запустить сигнал</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="coverage" class="coverage-section">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
+      <div class="section-shell coverage-grid">
+        <div class="coverage-copy">
+          <span class="eyebrow">
+            <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-wifi"/></svg>
+            Узнайте за минуту
+          </span>
+          <h2>Уфанет уже<br><em>в вашем доме?</em></h2>
+          <p>Введите адрес — покажем доступные тарифы и ближайшую дату подключения.</p>
+          <div class="coverage-facts">
+            <div><strong>1 день</strong><span>до подключения</span></div>
+            <div><strong>0 ₽</strong><span>выезд мастера</span></div>
+          </div>
+        </div>
+        <div class="address-card">
+          <form id="address-form">
+            <div class="form-heading">
+              <span class="form-icon">
+                <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-map-pin"/></svg>
+              </span>
+              <div><span>Проверка подключения</span><strong>Куда провести интернет?</strong></div>
+            </div>
+            <label><span>Город</span><input name="city" required value="Уфа" aria-label="Город"></label>
+            <div class="address-row">
+              <label><span>Улица</span><input name="street" required placeholder="Например, Айская" aria-label="Улица"></label>
+              <label><span>Дом</span><input name="house" required placeholder="12" aria-label="Дом"></label>
+            </div>
+            <button type="submit" class="brand-button form-submit">
+              Проверить адрес
+              <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-arrow-right"/></svg>
+            </button>
+            <p class="privacy-note">Нажимая кнопку, вы соглашаетесь с политикой обработки данных.</p>
+          </form>
+          <div class="address-success" id="address-success" role="status" hidden>
+            <span class="success-mark">
+              <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>
+            </span>
+            <span class="eyebrow">Отличные новости</span>
+            <h3 tabindex="-1">Можно подключить!</h3>
+            <p>Оставьте номер — специалист уточнит удобное время и подберет тариф.</p>
+            <input type="tel" placeholder="+7 999 000-00-00" aria-label="Номер телефона">
+            <button type="button" class="brand-button form-submit">
+              Перезвоните мне
+              <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-arrow-right"/></svg>
+            </button>
+            <button class="text-button" id="change-address" type="button">Изменить адрес</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tariffs" class="tariffs-section">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">
+              <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-zap"/></svg>
+              Тарифы для дома
+            </span>
+            <h2>Скорость, которая<br><em>подходит вам</em></h2>
+          </div>
+          <p>Все честно: без мелкого шрифта, скрытых платежей и внезапных условий.</p>
+        </div>
+        <div class="tariff-grid">
+          <article class="tariff-card">
+            <div class="tariff-top"><span>Легко</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-wifi"/></svg></div>
+            <div class="speed"><strong>100</strong><span>Мбит/с</span></div>
+            <p>Для общения, учебы и любимых сериалов</p>
+            <ul>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Стабильный Wi‑Fi</li>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Поддержка 24/7</li>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Подключение за 1 день</li>
+            </ul>
+            <div class="tariff-bottom"><div><strong>590 ₽</strong><span>в месяц</span></div><button class="tariff-button" type="button" data-scroll-to="#coverage">Выбрать<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-chevron-right"/></svg></button></div>
+          </article>
+          <article class="tariff-card is-popular">
+            <span class="popular-label">Выбирают чаще</span>
+            <div class="tariff-top"><span>В самый раз</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-wifi"/></svg></div>
+            <div class="speed"><strong>500</strong><span>Мбит/с</span></div>
+            <p>Для всей семьи и десятка устройств сразу</p>
+            <ul>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Wi‑Fi роутер включен</li>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Онлайн-кинотеатр</li>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Приоритетная поддержка</li>
+            </ul>
+            <div class="tariff-bottom"><div><strong>790 ₽</strong><span>в месяц</span></div><button class="tariff-button" type="button" data-scroll-to="#coverage">Выбрать<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-chevron-right"/></svg></button></div>
+          </article>
+          <article class="tariff-card">
+            <div class="tariff-top"><span>На максимуме</span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-wifi"/></svg></div>
+            <div class="speed"><strong>1000</strong><span>Мбит/с</span></div>
+            <p>Для 4K, игр, стримов и умного дома</p>
+            <ul>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Гигабитный роутер</li>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Минимальный пинг</li>
+              <li><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><use href="#icon-check"/></svg>Монтаж бесплатно</li>
+            </ul>
+            <div class="tariff-bottom"><div><strong>990 ₽</strong><span>в месяц</span></div><button class="tariff-button" type="button" data-scroll-to="#coverage">Выбрать<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-chevron-right"/></svg></button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="benefits" class="benefits-section">
+      <div class="section-shell benefits-grid">
+        <div class="benefit-intro">
+          <span class="eyebrow eyebrow-light">Почему Уфанет</span>
+          <h2>Сигнал есть.<br><em>Забот тоже меньше.</em></h2>
+        </div>
+        <div class="benefit-list">
+          <article><span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-router"/></svg></span><div><strong>Умный Wi‑Fi</strong><p>Настроим покрытие так, чтобы интернет ловил в каждой комнате.</p></div></article>
+          <article><span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-shield"/></svg></span><div><strong>Всегда на связи</strong><p>Отвечаем круглосуточно и решаем большинство вопросов удаленно.</p></div></article>
+          <article><span><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-zap"/></svg></span><div><strong>Честная скорость</strong><p>Оптика до дома дает стабильный интернет даже в часы пик.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="section-shell footer-inner">
+        <img src="./public/logo.svg" alt="Уфанет">
+        <p>Дом, где все онлайн.</p>
+        <a href="#top">Наверх<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><use href="#icon-arrow-right"/></svg></a>
+      </div>
+    </footer>
+  </main>
+  <noscript>Для анимации hero-экрана необходимо включить JavaScript.</noscript>
+</body>
+</html>
