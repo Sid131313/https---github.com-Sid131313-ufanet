@@ -1,8 +1,9 @@
 ﻿'use client';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { ArrowDown, ArrowRight, Check, ChevronRight, MapPin, Menu, Router, ShieldCheck, Sparkles, Wifi, X, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useHeroFrameSequence } from '@/components/story-video';
 
 const tariffs = [
   { name: 'Легко', speed: '100', price: '590', description: 'Для общения, учебы и любимых сериалов', features: ['Стабильный Wi‑Fi', 'Поддержка 24/7', 'Подключение за 1 день'] },
@@ -10,28 +11,13 @@ const tariffs = [
   { name: 'На максимуме', speed: '1000', price: '990', description: 'Для 4K, игр, стримов и умного дома', features: ['Гигабитный роутер', 'Минимальный пинг', 'Монтаж бесплатно'] },
 ];
 function StoryVideo() {
-  const sectionRef = useRef<HTMLElement>(null), firstRef = useRef<HTMLVideoElement>(null), secondRef = useRef<HTMLVideoElement>(null);
-  const target = useRef(0), current = useRef(0), raf = useRef<number | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [phase, setPhase] = useState(0);
-  useEffect(() => {
-    const section = sectionRef.current, first = firstRef.current, second = secondRef.current;
-    if (!section || !first || !second) return;
-    const update = () => { target.current = Math.min(1, Math.max(0, -section.getBoundingClientRect().top / Math.max(1, section.offsetHeight - innerHeight))); };
-    const tick = () => {
-      current.current += (target.current - current.current) * .11; const p = current.current;
-      if (first.duration) first.currentTime = Math.min(1, p / .49) * Math.max(0, first.duration - .04);
-      if (second.duration) second.currentTime = Math.min(1, Math.max(0, (p - .48) / .52)) * Math.max(0, second.duration - .04);
-      const next = p < .34 ? 0 : p < .66 ? 1 : 2; setPhase(v => v === next ? v : next);
-      section.style.setProperty('--story-progress', p.toFixed(4)); section.style.setProperty('--video-two-opacity', String(Math.min(1, Math.max(0, (p - .45) / .1))));
-      raf.current = requestAnimationFrame(tick);
-    };
-    update(); addEventListener('scroll', update, { passive: true }); addEventListener('resize', update); raf.current = requestAnimationFrame(tick);
-    return () => { removeEventListener('scroll', update); removeEventListener('resize', update); if (raf.current) cancelAnimationFrame(raf.current); };
-  }, []);
+  useHeroFrameSequence(sectionRef, canvasRef, setPhase);
   return <section ref={sectionRef} className="story" aria-label="Путь сигнала Уфанет"><div className="story-sticky">
-    <video ref={firstRef} className="story-video story-video-one" src="/video1-scroll.mp4" muted playsInline preload="auto"/>
-    <video ref={secondRef} className="story-video story-video-two" src="/video2-scroll.mp4" muted playsInline preload="auto"/>
-    <div className="story-shade"/><div className="signal-line"/>
+    <canvas ref={canvasRef} className="story-canvas" aria-hidden="true"/>
+    <div className="story-shade"/>
     <div className={`story-copy story-copy-main ${phase === 0 ? 'is-active' : ''}`}><span className="eyebrow eyebrow-light"><Sparkles size={14}/> Связь нового поколения</span><h1>Интернет,<br/><em>который летит</em><br/>прямо к вам</h1><p>До 1 Гбит/с для работы, фильмов, игр — и всего, что вы любите.</p><div className="hero-actions"><Button className="brand-button" onClick={() => document.querySelector('#coverage')?.scrollIntoView({behavior:'smooth'})}>Проверить адрес <ArrowRight/></Button><span className="hero-note"><span>от</span><strong>590 ₽</strong><span>/ месяц</span></span></div></div>
     <div className={`story-copy story-copy-mid ${phase === 1 ? 'is-active' : ''}`}><span className="story-index">01 — 02</span><h2>С улицы —<br/>в ваше окно.</h2><p>Оптоволокно ведет сигнал до самого дома без потерь скорости.</p></div>
     <div className={`story-copy story-copy-end ${phase === 2 ? 'is-active' : ''}`}><span className="story-index">02 — 02</span><h2>И дальше —<br/><em>к вам.</em></h2><p>Стабильный Wi‑Fi во всей квартире. Быстро, тихо, незаметно.</p></div>
