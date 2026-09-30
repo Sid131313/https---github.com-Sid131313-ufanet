@@ -193,7 +193,7 @@
         prioritizeAround(desiredFrame);
         renderNearest(desiredFrame);
         section.style.setProperty('--story-progress', progress.toFixed(4));
-        setPhase(progress < 0.34 ? 0 : progress < 0.66 ? 1 : 2);
+        setPhase(progress < 0.7 ? 0 : 1);
       };
 
       const tick = () => {
@@ -271,6 +271,31 @@
     });
   });
 
+  const formatPhone = (value) => {
+    let digits = value.replace(/\D/g, '');
+    if (digits.startsWith('7') || digits.startsWith('8')) digits = digits.slice(1);
+    digits = digits.slice(0, 10);
+
+    let formatted = '+7';
+    if (digits.length) formatted += ` ${digits.slice(0, 3)}`;
+    if (digits.length > 3) formatted += ` ${digits.slice(3, 6)}`;
+    if (digits.length > 6) formatted += `-${digits.slice(6, 8)}`;
+    if (digits.length > 8) formatted += `-${digits.slice(8, 10)}`;
+    return formatted;
+  };
+
+  document.querySelectorAll('input[type="tel"]').forEach((input) => {
+    input.addEventListener('focus', () => {
+      if (!input.value) input.value = '+7';
+    });
+    input.addEventListener('input', () => {
+      input.value = formatPhone(input.value);
+    });
+    input.addEventListener('blur', () => {
+      if (input.value === '+7') input.value = '';
+    });
+  });
+
   const addressForm = document.querySelector('#address-form');
   const addressSuccess = document.querySelector('#address-success');
   const changeAddress = document.querySelector('#change-address');
@@ -286,7 +311,54 @@
     changeAddress?.addEventListener('click', () => {
       addressSuccess.hidden = true;
       addressForm.hidden = false;
-      addressForm.querySelector('[name="street"]')?.focus();
+      addressForm.querySelector('[name="address"]')?.focus();
     });
   }
+
+  const connectModal = document.querySelector('#connect-modal');
+  const connectForm = document.querySelector('#connect-form');
+  const connectSuccess = document.querySelector('#connect-modal-success');
+  let modalTrigger = null;
+
+  const closeConnectModal = () => {
+    if (!(connectModal instanceof HTMLElement)) return;
+    connectModal.hidden = true;
+    document.body.classList.remove('has-modal');
+    if (connectForm instanceof HTMLFormElement && connectSuccess instanceof HTMLElement) {
+      connectForm.hidden = false;
+      connectSuccess.hidden = true;
+      connectForm.reset();
+    }
+    if (modalTrigger instanceof HTMLElement) modalTrigger.focus();
+  };
+
+  const openConnectModal = (trigger) => {
+    if (!(connectModal instanceof HTMLElement)) return;
+    modalTrigger = trigger;
+    connectModal.hidden = false;
+    document.body.classList.add('has-modal');
+    requestAnimationFrame(() => connectModal.querySelector('input')?.focus());
+  };
+
+  document.querySelectorAll('[data-open-connect]').forEach((control) => {
+    control.addEventListener('click', () => openConnectModal(control));
+  });
+
+  document.querySelectorAll('[data-close-connect]').forEach((control) => {
+    control.addEventListener('click', closeConnectModal);
+  });
+
+  connectForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!(connectForm instanceof HTMLFormElement) || !(connectSuccess instanceof HTMLElement)) return;
+    connectForm.hidden = true;
+    connectSuccess.hidden = false;
+    connectSuccess.querySelector('h3')?.focus();
+  });
+
+  addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && connectModal instanceof HTMLElement && !connectModal.hidden) {
+      closeConnectModal();
+    }
+  });
 })();
